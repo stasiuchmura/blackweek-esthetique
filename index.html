@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Week w Esthetique</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg-light: #ffffff;
+        --bg-warm: #f7f4f1;
+        --bg-warm-alt: #f4efe9;
+        --bg-warm-soft: #f5f2ee;
+        --text-dark: #1a1a1a;
+        --text-muted: #5b4b43;
+        --accent: #b48a6b;
+        --shadow: 0 15px 45px rgba(0, 0, 0, 0.08);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+        color: var(--text-dark);
+        background-color: var(--bg-light);
+        line-height: 1.6;
+      }
+
+      img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin: 0 0 1rem;
+        font-weight: 600;
+        color: var(--text-dark);
+      }
+
+      h2 {
+        font-size: clamp(1.5rem, 2vw, 2.2rem);
+        letter-spacing: 0.02em;
+      }
+
+      h3 {
+        font-size: clamp(1.1rem, 1.5vw, 1.4rem);
+        font-family: "Georgia", serif;
+        font-style: italic;
+        color: var(--accent);
+      }
+
+      p {
+        margin: 0 0 1rem;
+        font-size: 1rem;
+      }
+
+      .section {
+        padding: clamp(3rem, 8vw, 5rem) 0;
+      }
+
+      .container {
+        width: min(1280px, 100%);
+        margin-inline: auto;
+        padding-inline: clamp(1rem, 4vw, 2rem);
+      }
+
+      .narrow-text {
+        max-width: 760px;
+        margin-inline: auto;
+        color: var(--text-muted);
+        font-family: "Georgia", serif;
+        font-style: italic;
+        font-size: 1.05rem;
+        text-align: center;
+      }
+
+      .treatment-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: clamp(2rem, 4vw, 3rem);
+        align-items: center;
+      }
+
+      .treatment-img {
+        max-width: 500px;
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        border-radius: 1rem;
+        box-shadow: var(--shadow);
+        margin-inline: auto;
+      }
+
+      .eyebrow {
+        font-size: 0.9rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 0.5rem;
+      }
+
+      .highlight {
+        font-family: "Georgia", serif;
+        font-style: italic;
+        color: var(--accent);
+      }
+
+      .cta {
+        text-align: center;
+        margin-top: 2rem;
+      }
+
+      .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.85rem 2rem;
+        border-radius: 999px;
+        border: none;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1rem;
+        color: #ffffff;
+        background: linear-gradient(135deg, #c65f43, #e43d29);
+        box-shadow: 0 12px 30px rgba(228, 61, 41, 0.35);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 15px 35px rgba(228, 61, 41, 0.45);
+      }
+
+      .hero {
+        padding: 0;
+        background: none;
+      }
+
+      .hero-img {
+        width: 100%;
+        display: block;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .section--warm {
+        background-color: var(--bg-warm);
+      }
+
+      .section--warm-alt {
+        background-color: var(--bg-warm-alt);
+      }
+
+      .section--warm-soft {
+        background-color: var(--bg-warm-soft);
+      }
+
+      .final-section {
+        text-align: center;
+        max-width: 900px;
+        margin-inline: auto;
+      }
+
+      .final-section ul {
+        list-style: none;
+        padding: 0;
+        margin: 1rem 0 2rem;
+        line-height: 1.8;
+      }
+
+      .final-section li {
+        font-weight: 500;
+      }
+
+      footer {
+        padding: 1.5rem 0 2rem;
+        font-size: 0.85rem;
+        color: #4c4c4c;
+        text-align: center;
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      footer a {
+        color: inherit;
+        text-decoration: none;
+        margin: 0 0.75rem;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+
+      #backToTop {
+        position: fixed;
+        bottom: 1.5rem;
+        right: 1.5rem;
+        width: 48px;
+        height: 48px;
+        border: none;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.75);
+        color: #ffffff;
+        font-size: 1.5rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+      }
+
+      #backToTop.visible {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          scroll-behavior: auto !important;
+        }
+
+        .btn-primary,
+        #backToTop {
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HERO -->
+    <header class="hero">
+      <img
+        src="images/blackweek-hero.png"
+        alt="Black Week w Esthetique"
+        class="hero-img"
+      />
+    </header>
+
+    <main>
+      <!-- WPROWADZENIE -->
+      <section class="section">
+        <div class="container">
+          <div class="narrow-text">
+            <p>
+              To jedyny tydzień w roku, w którym możesz zadbać o swoją skórę w
+              wyjątkowych cenach i wybrać zabieg, który naprawdę odpowiada na
+              jej potrzeby. Przygotowałyśmy ofertę tak, aby każda kobieta mogła
+              odnaleźć tu coś dla siebie — od oczyszczenia, przez regenerację,
+              po naturalne odmładzanie.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- INFUZJA TLENOWA -->
+      <section class="section section--warm" id="infuzja">
+        <div class="container">
+          <div class="treatment-grid">
+            <div>
+              <img
+                src="images/infuzja-tlenowa.png"
+                alt="Infuzja tlenowa"
+                class="treatment-img"
+              />
+            </div>
+            <div>
+              <h2>Infuzja Tlenowa</h2>
+              <p>
+                Infuzja tlenowa to zabieg, który przywraca cerze promienny,
+                wypoczęty wygląd. Skóra staje się miękka, gładka i świetlista,
+                jak po długim weekendzie odsypiania stresu.
+              </p>
+              <p>
+                To propozycja dla kobiet, które czują, że ich cera jest
+                zmęczona, matowa lub pozbawiona życia — szczególnie po okresach
+                intensywnego stresu czy przesilenia.
+              </p>
+              <p>
+                Infuzja wprowadza do skóry składniki aktywne pod ciśnieniem
+                czystego tlenu, dzięki czemu natychmiast odżywia i rozświetla
+                cerę. To jeden z tych zabiegów, które robią efekt „wow” od razu
+                po wyjściu z gabinetu.
+              </p>
+              <p>
+                Jeśli chcesz odzyskać naturalny blask i świeżość skóry, wybierz
+                infuzję tlenową.
+              </p>
+              <p class="highlight">poczuj różnicę już po pierwszym spotkaniu</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- OCZYSZCZANIE WODOROWE -->
+      <section class="section" id="oczyszczanie">
+        <div class="container">
+          <div class="treatment-grid">
+            <div>
+              <p class="eyebrow">Infuzja Tlenowa</p>
+              <h2>6-etapowe oczyszczanie wodorowe</h2>
+              <p>
+                to zabieg, który dokładnie czyści skórę w sposób delikatny i
+                bezpieczny, nawet dla cery wrażliwej. W każdym z sześciu etapów
+                pracujemy inną techniką, dzięki czemu skóra zostaje oczyszczona
+                z zanieczyszczeń, nadmiaru sebum i martwego naskórka, a
+                jednocześnie pozostaje nawilżona i spokojna.
+              </p>
+              <p>
+                Skóra po zabiegu jest wyraźnie gładsza, świeższa i jaśniejsza.
+                Pory są mniej widoczne, stany zapalne wyciszone, a struktura
+                skóry wyrównana.
+              </p>
+              <p>
+                To zabieg szczególnie polecany osobom, które chcą zacząć „od
+                podstaw” — uporządkować cerę, przywrócić jej równowagę i
+                przygotować skórę do dalszych terapii.
+              </p>
+              <p class="highlight">
+                Jeśli chcesz, aby Twoja skóra była naprawdę czysta, gładka i
+                przygotowana do dalszej pielęgnacji — wybierz 6-etapowe
+                oczyszczanie wodorowe
+              </p>
+            </div>
+            <div>
+              <img
+                src="images/oczyszczanie-wodorowe.png"
+                alt="6-etapowe oczyszczanie wodorowe"
+                class="treatment-img"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MEZOTERAPIA -->
+      <section class="section section--warm-alt" id="mezoterapia">
+        <div class="container">
+          <div class="treatment-grid">
+            <div>
+              <img
+                src="images/mezoterapia-mikroiglowa.png"
+                alt="Mezoterapia mikroigłowa"
+                class="treatment-img"
+              />
+            </div>
+            <div>
+              <h2>Mezoterapia Mikroigłowa</h2>
+              <h3>Odbudowa, gęstość i nowa jakość skóry</h3>
+              <p>
+                Mezoterapia mikroigłowa to zabieg, który działa głęboko — tam,
+                gdzie skóra traci swoją gęstość, elastyczność i strukturę. To
+                idealny wybór dla kobiet, które walczą z bliznami,
+                nierównościami, zmarszczkami lub utratą jędrności.
+              </p>
+              <p>
+                Podczas zabiegu skóra jest stymulowana do intensywnej odbudowy,
+                dzięki czemu stopniowo staje się gładsza, bardziej napięta i
+                młodsza w dotyku.
+              </p>
+              <p>
+                Efekty są trwałe, bo skóra tworzy nowe włókna kolagenowe i
+                odzyskuje swoją naturalną sprężystość.
+              </p>
+              <p>
+                Jeśli chcesz odnowić skórę od środka i zobaczyć realną poprawę
+                jej jakości — wybierz mezoterapię mikroigłową.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MELTIVIO -->
+      <section class="section" id="meltivio">
+        <div class="container">
+          <div class="treatment-grid">
+            <div>
+              <h2>Meltivio</h2>
+              <h3>Delikatny, naturalny lifting bez igieł</h3>
+              <p>
+                Meltivio to zabieg dla kobiet, które chcą poprawić napięcie
+                skóry i podkreślić owal twarzy bez igieł i bez bólu.
+              </p>
+              <p>
+                Energia przenika do głębokich warstw skóry, delikatnie obkurcza
+                włókna kolagenowe i stymuluje powstawanie nowych. Efekt jest
+                subtelny, ale widoczny — skóra staje się bardziej jędrna, gęsta
+                i sprężysta.
+              </p>
+              <p>
+                To propozycja dla osób, które chcą działać na oznaki starzenia w
+                sposób naturalny, zgodny z biologią skóry, bez przestojów i bez
+                ryzyka podrażnień. Zabieg jest niezwykle przyjemny i
+                relaksujący, a jednocześnie daje realną poprawę.
+              </p>
+              <p>
+                Jeśli marzysz o naturalnym uniesieniu i gładkości skóry —
+                Meltivio będzie dla Ciebie idealne.
+              </p>
+            </div>
+            <div>
+              <img
+                src="images/meltivio.png"
+                alt="Zabieg Meltivio"
+                class="treatment-img"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TERAPIA LED -->
+      <section class="section section--warm-soft" id="terapia-led">
+        <div class="container">
+          <div class="treatment-grid">
+            <div>
+              <h2>Terapia LED</h2>
+              <h3>Światło, które leczy skórę</h3>
+              <p>
+                Terapia LED to jeden z najbardziej wszechstronnych zabiegów,
+                który pasuje do każdej skóry — od wrażliwej po trądzikową.
+              </p>
+              <p>
+                W Esthetique pracujemy na lampie z certyfikacją medyczną, co
+                daje pewność, że emitowane światło ma właściwości
+                terapeutyczne, a nie jedynie kosmetyczne.
+              </p>
+              <p>
+                Dzięki temu LED uspokaja rumień, redukuje stany zapalne,
+                rozjaśnia przebarwienia i pobudza skórę do regeneracji. Skóra po
+                terapii staje się spokojniejsza, bardziej wyrównana i niezwykle
+                miękka. To zabieg, który często łączymy z innymi terapiami, aby
+                przyspieszyć efekty i wzmocnić proces odnowy.
+              </p>
+              <p>
+                Jeśli Twoja skóra potrzebuje ukojenia, regeneracji i delikatnego
+                odmłodzenia — wybierz terapię LED.
+              </p>
+            </div>
+            <div>
+              <img
+                src="images/terapia-led.png"
+                alt="Terapia LED"
+                class="treatment-img"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ZESPÓŁ -->
+      <section class="section section--warm" id="zespol">
+        <div class="container">
+          <div class="treatment-grid">
+            <div>
+              <img
+                src="images/zespol-esthetique.png"
+                alt="Zespół Esthetique"
+                class="treatment-img"
+              />
+            </div>
+            <div>
+              <h2>
+                BLACK WEEK – Idealny moment, by zacząć dbać o skórę świadomie
+              </h2>
+              <p>
+                To tydzień, w którym możesz zrobić coś dobrego dla siebie —
+                zacząć pielęgnację, która naprawdę działa, i wybrać zabieg
+                idealnie dopasowany do potrzeb Twojej skóry.
+              </p>
+              <p>
+                Jeśli zastanawiasz się, który będzie najlepszy — z
+                przyjemnością pomożemy Ci wybrać ofertę
+                <span aria-hidden="true">❤️</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FINAL CTA -->
+      <section class="section" id="black-week">
+        <div class="container final-section">
+          <h2>
+            BLACK WEEK w Esthetique już za chwilę — i naprawdę warto być z nami.
+          </h2>
+          <p>
+            Każdego dnia będziemy odsłaniać kolejne zabiegi w specjalnych
+            cenach, dlatego jeśli chcesz wybrać coś idealnego dla swojej skóry,
+            obserwuj nas uważnie. Promocje będą dostępne tylko przez 24 godziny
+          </p>
+          <p>
+            Zabiegi kupujesz już teraz w wyjątkowych cenach, ale realizujesz je
+            w spokojnym, zimowym czasie — od 6 stycznia 2026 do 28 lutego 2026.
+            Dzięki temu masz pewność, że rozpoczniesz rok z pielęgnacją, która
+            naprawdę poprawi kondycję skóry.
+          </p>
+          <p>
+            Aby nie przegapić żadnej promocji i wiedzieć dokładnie, którego dnia
+            pojawia się dany zabieg, obserwuj nas uważnie:
+          </p>
+          <ul>
+            <li>📍 Instagram: @twoj_instagram</li>
+            <li>📍 Facebook: Salon Kosmetyczny Esthetique</li>
+          </ul>
+          <p>
+            Każdego dnia odsłaniamy kolejne oferty. Bądź z nami na bieżąco.
+          </p>
+          <p class="highlight" style="font-weight: 600; font-style: normal">
+            Black Week dopiero się zaczyna — i będzie naprawdę wyjątkowy.
+          </p>
+          <div class="cta">
+            <a href="#footer" class="btn-primary">Skontaktuj się z nami</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- STOPKA -->
+    <footer id="footer">
+      <a href="#black-week">Warunki i pomoc techniczna</a>
+      <a href="#black-week">Polityka prywatności</a>
+    </footer>
+
+    <button id="backToTop" aria-label="Wróć na początek strony">↑</button>
+
+    <script>
+      // Smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((link) => {
+        link.addEventListener("click", (event) => {
+          const targetId = link.getAttribute("href");
+          if (targetId.length > 1) {
+            const target = document.querySelector(targetId);
+            if (target) {
+              event.preventDefault();
+              target.scrollIntoView({ behavior: "smooth" });
+            }
+          }
+        });
+      });
+
+      // Back to top button logic
+      const backToTop = document.getElementById("backToTop");
+      const toggleBackToTop = () => {
+        if (window.scrollY > window.innerHeight * 0.5) {
+          backToTop.classList.add("visible");
+        } else {
+          backToTop.classList.remove("visible");
+        }
+      };
+
+      window.addEventListener("scroll", toggleBackToTop);
+
+      backToTop.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    </script>
+  </body>
+</html>
+
